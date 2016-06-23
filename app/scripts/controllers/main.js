@@ -4,7 +4,11 @@
 
 angular.module('gtrApp')
   .controller('MainCtrl', function ($scope, $location, $interval, PullFetcher, authManager, config, team) {
-    var oauthEnabled    = !angular.isUndefined(config.githubOAuth);
+    var oauthEnabled    = !angular.isUndefined(config.githubOAuth) &&
+        typeof config.githubOAuth.url === 'string' &&
+        config.githubOAuth.url.length &&
+        typeof config.githubOAuth.apps === 'object' &&
+        config.githubOAuth.apps.length;
     $scope.oauthEnabled = oauthEnabled;
     if (oauthEnabled) {
       authManager.authenticateTeams();
@@ -92,7 +96,7 @@ angular.module('gtrApp')
     };
 
     $scope.$watch('team', function (team) {
-      $location.path(team);
+      $location.path('team/' + team);
     });
 
     $scope.$on('$destroy', function () {

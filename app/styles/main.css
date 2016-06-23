@@ -1,11 +1,10 @@
 body {
-  background-color: #ecf0f1;
+  background-color: #ecf0f1 !important;
   color: #efefef;
 }
 
 a {
   text-decoration: none;
-  color: inherit;
   cursor: pointer;
 }
 
@@ -33,13 +32,16 @@ a {
 }
 
 .container {
-  padding: 20px 30px;
+  padding-top: 15px;
+  padding-bottom: 15px;
+  width: auto !important;
 }
 
 ul.pulls {
   list-style: none;
   padding: 0;
   margin: 0;
+  font-size: 1.15em;
 }
 
 ul.pulls li {
@@ -49,6 +51,11 @@ ul.pulls li {
   overflow: hidden;
   text-overflow: ellipsis;
 }
+
+ul.pulls li:last-child {
+  margin-bottom: 0;
+}
+
 ul.pulls li .link, ul.pulls li .pull-right {
   white-space: nowrap;
 }
@@ -70,6 +77,10 @@ ul.pulls li .avatar {
   border-radius: 9000px;
   height: 30px;
   vertical-align: middle;
+}
+
+ul.pulls li a, ul.pulls li span {
+  color: #fff;
 }
 
 ul.pulls .date {
@@ -172,10 +183,9 @@ ul {
 }
 
 .badge {
-  padding: 4px 8px;
-  border-radius: 4px;
-  font-size: 0.875em;
-  color: black;
+  color: #000 !important;
+  font-weight: normal !important;
+  padding: 0.4em 0.8em !important;
 }
 
 .badge-label {
@@ -183,6 +193,50 @@ ul {
 }
 
 .badge-milestone {
-  background-color: white;
+  background-color: white !important;
   margin-right: 4px;
+}
+
+.tab-content {
+  padding: 1em 1em 0;
+  margin-bottom: 1em;
+  background-color: #fff;
+  border: 1px solid #ddd;
+  border-top-width: 0;
+}
+
+.bs-callout {
+  padding: 0 1em;
+  margin-bottom: 1em;
+  border: 1px solid #eee;
+  border-left-width: 5px;
+  border-radius: 3px;
+}
+
+.bs-callout-info {
+  border-left-color: #1b809e;
+}
+.bs-callout-info h4 {
+  color: #1b809e;
+}
+
+.table label {
+  font-weight: normal;
+}
+
+.form-control {
+  margin-bottom: 0.5em;
+}
+
+ul.inline li {
+  display: inline-block;
+  margin-bottom: 0.5em;
+}
+
+table .empty {
+  text-align: center;
+}
+
+.btn-stack-right {
+  margin-right: 0.5em;
 }

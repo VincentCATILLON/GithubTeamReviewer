@@ -14,8 +14,14 @@ angular
         reloadOnSearch: false
       })
 
+      .state('config', {
+        url: '/config',
+        templateUrl: 'views/config.html',
+        controller: 'ConfigCtrl'
+      })
+
       .state('main', {
-        url: '/:team',
+        url: '/team/:team',
         templateUrl: 'views/main.html',
         controller: 'MainCtrl',
         resolve: {team: function($q, $stateParams, config) {
@@ -30,5 +36,5 @@ angular
         }}
       });
 
-      $urlRouterProvider.otherwise('/' + Object.keys(config.teams)[0]);
+      $urlRouterProvider.otherwise('/team/' + Object.keys(config.teams)[0]);
   });

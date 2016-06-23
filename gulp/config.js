@@ -24,3 +24,5 @@ gulp.task('config', function () {
 gulp.task('config:test', function () {
   config('test');
 });
+
+module.exports = config;

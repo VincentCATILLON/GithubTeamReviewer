@@ -1,0 +1,39 @@
+<div class="form-group">
+    <div class="bs-callout bs-callout-info">
+        <h4>URL to Gatekeeper</h4>
+        <p>
+            See documentation: <a href="https://github.com/M6Web/gatekeeper">OAuth section</a>.
+        </p>
+    </div>
+    <label for="githubOAuth_gatekeeperBaseUrl">Gatekeeper base url:</label>
+    <input id="githubOAuth_gatekeeperBaseUrl" name="githubOAuth[gatekeeperBaseUrl]" type="text" class="form-control" ng-model="config.githubOAuth.gatekeeperBaseUrl">
+</div>
+
+<div class="form-group">
+    <label>Applications:</label>
+    <table class="table table-striped table-bordered">
+        <thead ng-show="config.githubOAuth.apps.length">
+        <tr>
+            <th>URL</th>
+            <th>Client ID</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr ng-model="app" ng-repeat="(index, app) in config.githubOAuth.apps" ng-include="'views/oauth_app.html'"></tr>
+        </tbody>
+        <tfoot>
+        <tr ng-hide="config.githubOAuth.apps.length">
+            <td colspan="2" class="empty">
+                <code>No application to use for authentication.</code>
+            </td>
+        </tr>
+        <tr>
+            <td colspan="2">
+                <button class="btn btn-success pull-right" type="button" ng-click="addGithubOAuthApp()">
+                    <span class="glyphicon glyphicon-plus"></span> Add an application
+                </button>
+            </td>
+        </tr>
+        </tfoot>
+    </table>
+</div>

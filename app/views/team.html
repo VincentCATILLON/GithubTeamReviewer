@@ -1,0 +1,94 @@
+<td class="form-group">
+  <label for="config_teams_{{index}}_name">Name:</label>
+  <input id="config_teams_{{index}}_name" name="config[team][{{index}}][name]" type="text" class="form-control" ng-model="team.name" required>
+  <button class="btn btn-danger" ng-click="removeTeam(team)">
+    <span class="glyphicon glyphicon-remove"></span> Remove this team
+  </button>
+</td>
+<td class="form-group">
+  <label for="config_teams_{{index}}_apiUrl">Api URL:</label>
+  <input id="config_teams_{{index}}_apiUrl" name="config[team][{{index}}][apiUrl]" type="text" class="form-control" placeholder="https://api.github.com" ng-model="team.apiUrl">
+  <label for="config_teams_{{index}}_token">Token OAuth:</label>
+  <input id="config_teams_{{index}}_token" name="config[team][{{index}}][token]" type="text" class="form-control" ng-model="team.token">
+  <label for="config_teams_{{index}}_oauthAppClientId">Client ID:</label>
+  <input id="config_teams_{{index}}_oauthAppClientId" name="config[team][{{index}}][oauthAppClientId]" type="text" class="form-control" ng-model="team.oauthAppClientId">
+</td>
+<td class="form-group">
+  <div>
+    <input id="config_teams_{{index}}_descendingOrder" name="config[team][{{index}}][descendingOrder]" type="checkbox" ng-model="team.descendingOrder">
+    <label for="config_teams_{{index}}_descendingOrder">Last PR on top</label>
+  </div>
+  <div>
+    <input id="config_teams_{{index}}_labels" name="config[team][{{index}}][labels]" type="checkbox" ng-model="team.labels">
+    <label for="config_teams_{{index}}_labels">Labels</label>
+  </div>
+  <div>
+    <input id="config_teams_{{index}}_milestones" name="config[team][{{index}}][milestones]" type="checkbox" ng-model="team.milestones">
+    <label for="config_teams_{{index}}_milestones">Milestones</label>
+  </div>
+</td>
+<td class="form-group">
+  <div>
+    <label>Members:</label>
+    <ul class="inline row">
+      <li ng-model="member" ng-repeat="(memberIndex, member) in team.members" class="col-md-6">
+        <div class="input-group">
+          <input id="config_teams_{{index}}_members_{{memberIndex}}" name="config[team][{{index}}][members][{{memberIndex}}]" type="text" class="form-control" ng-model="member.value">
+          <span class="input-group-btn">
+            <button class="btn btn-danger" type="button" ng-click="removeListItem(team.members, member)">
+              <span class="glyphicon glyphicon-remove"></span>
+            </button>
+          </span>
+        </div>
+      </li>
+      <li class="col-md-12">
+        <p ng-hide="team.members.length"><code>No filter on members.</code></p>
+        <button class="btn btn-success" type="button" ng-click="addListItem(team.members)">
+          <span class="glyphicon glyphicon-plus"></span> Add a member
+        </button>
+      </li>
+    </ul>
+  </div>
+  <div>
+    <label>Projects:</label>
+    <ul class="inline row">
+      <li ng-model="project" ng-repeat="(projectIndex, project) in team.projects" class="col-md-6">
+        <div class="input-group">
+          <input id="config_teams_{{index}}_projects_{{projectIndex}}" name="config[team][{{index}}][projects][{{projectIndex}}]" type="text" class="form-control" ng-model="project.value">
+          <span class="input-group-btn">
+            <button class="btn btn-danger" type="button" ng-click="removeListItem(team.projects, project)">
+              <span class="glyphicon glyphicon-remove"></span>
+            </button>
+          </span>
+        </div>
+      </li>
+      <li class="col-md-12">
+        <p ng-hide="team.projects.length"><code>No filter on projects.</code></p>
+        <button class="btn btn-success" type="button" ng-click="addListItem(team.projects)">
+          <span class="glyphicon glyphicon-plus"></span> Add a project
+        </button>
+      </li>
+    </ul>
+  </div>
+  <div>
+    <label>Organizations:</label>
+    <ul class="inline row">
+      <li ng-model="org" ng-repeat="(orgIndex, org) in team.orgs" class="col-md-6">
+        <div class="input-group">
+          <input id="config_teams_{{index}}_orgs_{{orgIndex}}" name="config[team][{{index}}][orgs][{{orgIndex}}]" type="text" class="form-control" ng-model="org.value">
+          <span class="input-group-btn">
+            <button class="btn btn-danger" type="button" ng-click="removeListItem(team.orgs, org)">
+              <span class="glyphicon glyphicon-remove"></span>
+            </button>
+          </span>
+        </div>
+      </li>
+      <li class="col-md-12">
+        <p ng-hide="team.orgs.length"><code>No filter on organizations.</code></p>
+        <button class="btn btn-success" type="button" ng-click="addListItem(team.orgs)">
+          <span class="glyphicon glyphicon-plus"></span> Add an organization
+        </button>
+      </li>
+    </ul>
+  </div>
+</td>

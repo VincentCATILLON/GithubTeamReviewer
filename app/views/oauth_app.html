@@ -1,0 +1,9 @@
+<td class="form-group">
+    <input id="githubOAuth_apps_{{index}}_url" name="githubOAuth[{{index}}][url]" type="text" class="form-control" ng-model="app.url" required>
+    <button class="btn btn-danger" type="button" ng-click="removeGithubOAuthApp(app)">
+        <span class="glyphicon glyphicon-remove"></span> Remove this application
+    </button>
+</td>
+<td class="form-group">
+    <input id="githubOAuth_apps_{{index}}_clientId" name="githubOAuth][{{index}}][clientId]" type="text" class="form-control" ng-model="app.clientId" required>
+</td>

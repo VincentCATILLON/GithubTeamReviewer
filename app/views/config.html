@@ -1,0 +1,67 @@
+<header class="header-top">
+  <a href="http://github.com/m6web/GithubTeamReviewer">Github Team Reviewer</a> by <a href="http://tech.m6web.fr">M6Web</a>
+</header>
+
+<div class="container">
+  <form id="configForm" name="configForm" novalidate ng-submit="save()">
+
+    <ul class="nav nav-tabs">
+      <li class="active"><a data-toggle="tab" data-target="#general">General</a></li>
+      <li><a data-toggle="tab" data-target="#teams">Teams</a></li>
+      <li><a data-toggle="tab" data-target="#oauth">OAuth</a></li>
+    </ul>
+
+    <div class="tab-content">
+      <div id="general" class="tab-pane fade in active">
+        <div class="form-group">
+          <div class="bs-callout bs-callout-info">
+            <h4>Time between two dashboard updates</h4>
+            <p>
+              Be careful with low interval because you can <code>reach API rate limit</code> quickly.
+            </p>
+          </div>
+          <label for="refreshInterval">Refresh interval (seconds):</label>
+          <input id="refreshInterval" name="refreshInterval" type="number" class="form-control" ng-model="config.refreshInterval">
+        </div>
+      </div>
+
+      <div id="teams" class="tab-pane fade">
+        <table class="table table-striped table-bordered">
+          <thead ng-show="config.teams.length">
+            <tr>
+              <th width="250">Team</th>
+              <th width="250">Authentication</th>
+              <th width="150">Display</th>
+              <th>Filters</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr ng-model="team" ng-repeat="(index, team) in config.teams" ng-include="'views/team.html'"></tr>
+          </tbody>
+          <tfoot>
+            <tr ng-hide="config.teams.length">
+              <td colspan="4" class="empty">
+                <code>No team defined.</code>
+              </td>
+            </tr>
+            <tr>
+              <td colspan="4">
+                <a class="btn btn-success pull-right" ng-click="addTeam()">
+                  <span class="glyphicon glyphicon-plus"></span> Add a team
+                </a>
+              </td>
+            </tr>
+          </tfoot>
+        </table>
+      </div>
+
+      <div id="oauth" class="tab-pane fade">
+        <ng-include src="'views/oauth.html'"></ng-include>
+      </div>
+    </div>
+
+    <button type="submit" value="Save" class="btn btn-primary pull-right">
+      <span class="glyphicon glyphicon-save"></span> Save
+    </button>
+  </form>
+</div>

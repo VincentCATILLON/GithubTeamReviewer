@@ -1,10 +1,10 @@
 'use strict';
 
 var gulp = require('gulp');
-
 var browserSync = require('browser-sync');
-
+var http = require('http');
 var middleware = require('./proxy');
+var configUpdater = require('./config-updater');
 
 function browserSyncInit(baseDir, files, browser, notify) {
   browser = browser === undefined ? 'default' : browser;
@@ -21,6 +21,33 @@ function browserSyncInit(baseDir, files, browser, notify) {
     notify: notify
   });
 
+  var sendResponse = function(response, data) {
+    data = {
+      code: data.code || 500,
+      message: data.message || 'Internal server error'
+    };
+    response.writeHead(data.code);
+    response.end(JSON.stringify(data));
+  };
+
+  var server = http.createServer(function(request, response) {
+    if (request.method == 'POST') {
+      var body = '';
+      request.on('data', function(data) {
+        body += data;
+      });
+      request.on('end', function () {
+        var post = JSON.parse(body);
+        new configUpdater(post, response, sendResponse);
+      });
+    } else {
+      sendResponse(response, {
+        code: 403,
+        message: 'Only POST values are allowed'
+      });
+    }
+  });
+  server.listen(9001);
 }
 
 gulp.task('serve', ['watch', 'config'], function () {
